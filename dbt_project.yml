@@ -1,0 +1,27 @@
+# dbt_project.yml
+name: 'your_dbt_project_name'
+version: '1.0.0'
+config-version: 2
+
+profile: 'dbt_scheduler' # Phải khớp với tên profile trong profiles.yml
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+  - "logs"
+
+# Cấu hình nguồn dữ liệu (Source)
+sources:
+  ndc_nd_schedule: # Tên source, bạn có thể thay đổi
+    database: ndc_nd_schedule # Tên database từ profiles.yml
+    schema: public # Schema chứa bảng job
+    tables:
+      - name: job # Tên bảng gốc
