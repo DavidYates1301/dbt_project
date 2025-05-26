@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: ndc_nd_schedule         # Tên database/schema chứa bảng "job"
+    description: Source for Airflow job table
+    schema: public       # <- Sửa thành schema thật nếu khác
+    tables:
+      - name: job
+        description: Table tracking Airflow jobs
+        columns:
+          - name: id
+            description: Primary key
+          - name: dag_id
+            description: ID of the DAG
+          - name: state
+            description: Current state of the job
+          - name: job_type
+            description: Type of the job (e.g., Scheduler, LocalTaskJob)
+          - name: start_date
+            description: Time when the job started
+          - name: end_date
+            description: Time when the job ended
+          - name: latest_heartbeat
+            description: Latest heartbeat from the job
+          - name: executor_class
+            description: Executor class used
+          - name: hostname
+            description: Hostname where the job ran
+          - name: unixname
+            description: Unix username running the job
